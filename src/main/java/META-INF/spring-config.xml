@@ -12,8 +12,9 @@
 	default-lazy-init="true">
 
     <!-- Ativa recursos automáticos no Spring como Injeção de Dependecia por anotações -->
-	<context:annotation-config />
+	<context:annotation-config>
 	<context:component-scan base-package="projeto.spring.data.aula.model" />
+	</context:annotation-config>
 
 
      <!-- Define o DataSource e a conexão com o banco de dados -->
