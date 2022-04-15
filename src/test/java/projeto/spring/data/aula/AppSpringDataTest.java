@@ -1,5 +1,6 @@
 package projeto.spring.data.aula;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.Test;
@@ -16,35 +17,35 @@ import projeto.spring.data.aula.dao.InterfaceSpringDataUSer;
 import projeto.spring.data.aula.model.UsuarioSpringData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:META-INF/spring-config.xml"})
+@ContextConfiguration(locations = { "classpath:META-INF/spring-config.xml" })
 @TestExecutionListeners(listeners = { DependencyInjectionTestExecutionListener.class,
-	    DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class })
+		DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class AppSpringDataTest {
 
 	@SuppressWarnings("unused")
 	@Autowired
 	private InterfaceSpringDataUSer interfaceSpringDataUSer;
-	
+
 	@Test
-	public void testeInsert(){
+	public void testeInsert() {
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setEmail("qqqcoiil@email.com");
+		usuarioSpringData.setEmail("3.com");
 		usuarioSpringData.setIdade(99);
-		usuarioSpringData.setLogin("Loginqq 3");
-		usuarioSpringData.setSenha("senhaqq 3");
-		usuarioSpringData.setNome("Nomeqq 3");
-		
+		usuarioSpringData.setLogin("3");
+		usuarioSpringData.setSenha("3");
+		usuarioSpringData.setNome("3");
+
 		interfaceSpringDataUSer.save(usuarioSpringData);
-		
-		System.out.println("Usuarios cadastrados-> "+interfaceSpringDataUSer.count());
+
+		System.out.println("Usuarios cadastrados-> " + interfaceSpringDataUSer.count());
 	}
-	
+
 	@Test
-	public void testeConsulta(){
-		
+	public void testeConsulta() {
+
 		@SuppressWarnings("unused")
 		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUSer.findById(1L);
-		
+
 		System.out.println(usuarioSpringData.get().getId());
 		System.out.println(usuarioSpringData.get().getIdade());
 		System.out.println(usuarioSpringData.get().getNome());
@@ -52,40 +53,58 @@ public class AppSpringDataTest {
 		System.out.println(usuarioSpringData.get().getLogin());
 		System.out.println(usuarioSpringData.get().getSenha());
 	}
-	
+
 	@Test
-	public void testeConsultaTodos(){
-		
+	public void testeConsultaTodos() {
+
 		Iterable<UsuarioSpringData> lista = interfaceSpringDataUSer.findAll();
-		
+
 		for (UsuarioSpringData usuarioSpringData : lista) {
-			
+
 			System.out.println(usuarioSpringData.getId());
 			System.out.println(usuarioSpringData.getIdade());
 			System.out.println(usuarioSpringData.getNome());
 			System.out.println(usuarioSpringData.getEmail());
 			System.out.println(usuarioSpringData.getLogin());
 			System.out.println(usuarioSpringData.getSenha());
-			
+
 			System.out.println("-------------------------------------------------");
 		}
 	}
-	
+
 	@Test
-	public void testeUpdate(){
-		
+	public void testeUpdate() {
+
 		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUSer.findById(3L);
 		UsuarioSpringData data = usuarioSpringData.get();
 		data.setNome("Nome atualizado");
 		data.setEmail("email atualizado");
-		
+
 		interfaceSpringDataUSer.save(data);
 	}
-	
+
 	@Test
-	public void testeDelete(){
-		
+	public void testeDelete() {
+
 		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUSer.findById(5L);
 		interfaceSpringDataUSer.delete(usuarioSpringData.get());
+	}
+
+	@Test
+	public void testeConsultaNome() {
+		
+		List<UsuarioSpringData> list = interfaceSpringDataUSer.buscaPorNome("3");
+
+		for (UsuarioSpringData usuarioSpringData : list) {
+
+			System.out.println(usuarioSpringData.getId());
+			System.out.println(usuarioSpringData.getIdade());
+			System.out.println(usuarioSpringData.getNome());
+			System.out.println(usuarioSpringData.getEmail());
+			System.out.println(usuarioSpringData.getLogin());
+			System.out.println(usuarioSpringData.getSenha());
+
+			System.out.println("-------------------------------------------------");
+		}
 	}
 }
