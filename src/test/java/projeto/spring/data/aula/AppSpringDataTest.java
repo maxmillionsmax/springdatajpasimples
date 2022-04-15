@@ -11,6 +11,7 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import projeto.spring.data.aula.dao.InterfaceSpringDataUSer;
+import projeto.spring.data.aula.model.UsuarioSpringData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:META-INF/spring-config.xml"})
@@ -18,10 +19,26 @@ import projeto.spring.data.aula.dao.InterfaceSpringDataUSer;
 	    DirtiesContextTestExecutionListener.class, TransactionalTestExecutionListener.class })
 public class AppSpringDataTest {
 
+	@SuppressWarnings("unused")
 	@Autowired
 	private InterfaceSpringDataUSer interfaceSpringDataUSer;
+	
 	@Test
-	public void testeInsert() throws Exception{
+	public void testeInsert(){
+		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
+		usuarioSpringData.setEmail("coiil@email.com");
+		usuarioSpringData.setIdade(999);
+		usuarioSpringData.setLogin("Login 333");
+		usuarioSpringData.setSenha("senha 333");
+		usuarioSpringData.setNome("Nome 333");
+		
+		interfaceSpringDataUSer.save(usuarioSpringData);
+		
+		System.out.println("Usuarios cadastrados-> "+interfaceSpringDataUSer.count());
+	}
+	
+	@Test
+	public void testeConsulta() throws Exception{
 		System.out.println("Iniciou spring com sucesso!");
 	}
 }
