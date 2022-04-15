@@ -28,11 +28,11 @@ public class AppSpringDataTest {
 	@Test
 	public void testeInsert(){
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setEmail("coiil@email.com");
-		usuarioSpringData.setIdade(999);
-		usuarioSpringData.setLogin("Login 333");
-		usuarioSpringData.setSenha("senha 333");
-		usuarioSpringData.setNome("Nome 333");
+		usuarioSpringData.setEmail("qqqcoiil@email.com");
+		usuarioSpringData.setIdade(99);
+		usuarioSpringData.setLogin("Loginqq 3");
+		usuarioSpringData.setSenha("senhaqq 3");
+		usuarioSpringData.setNome("Nomeqq 3");
 		
 		interfaceSpringDataUSer.save(usuarioSpringData);
 		
@@ -51,6 +51,25 @@ public class AppSpringDataTest {
 		System.out.println(usuarioSpringData.get().getEmail());
 		System.out.println(usuarioSpringData.get().getLogin());
 		System.out.println(usuarioSpringData.get().getSenha());
+		
+	}
+	
+	@Test
+	public void testeConsultaTodos(){
+		
+		Iterable<UsuarioSpringData> lista = interfaceSpringDataUSer.findAll();
+		
+		for (UsuarioSpringData usuarioSpringData : lista) {
+			
+			System.out.println(usuarioSpringData.getId());
+			System.out.println(usuarioSpringData.getIdade());
+			System.out.println(usuarioSpringData.getNome());
+			System.out.println(usuarioSpringData.getEmail());
+			System.out.println(usuarioSpringData.getLogin());
+			System.out.println(usuarioSpringData.getSenha());
+			
+			System.out.println("-------------------------------------------------");
+		}
 		
 	}
 }
