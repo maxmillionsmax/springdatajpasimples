@@ -51,7 +51,6 @@ public class AppSpringDataTest {
 		System.out.println(usuarioSpringData.get().getEmail());
 		System.out.println(usuarioSpringData.get().getLogin());
 		System.out.println(usuarioSpringData.get().getSenha());
-		
 	}
 	
 	@Test
@@ -70,6 +69,23 @@ public class AppSpringDataTest {
 			
 			System.out.println("-------------------------------------------------");
 		}
+	}
+	
+	@Test
+	public void testeUpdate(){
 		
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUSer.findById(3L);
+		UsuarioSpringData data = usuarioSpringData.get();
+		data.setNome("Nome atualizado");
+		data.setEmail("email atualizado");
+		
+		interfaceSpringDataUSer.save(data);
+	}
+	
+	@Test
+	public void testeDelete(){
+		
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUSer.findById(5L);
+		interfaceSpringDataUSer.delete(usuarioSpringData.get());
 	}
 }
