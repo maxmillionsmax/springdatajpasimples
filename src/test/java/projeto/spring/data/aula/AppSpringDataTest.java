@@ -29,11 +29,11 @@ public class AppSpringDataTest {
 	@Test
 	public void testeInsert() {
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setEmail("3.com");
-		usuarioSpringData.setIdade(99);
-		usuarioSpringData.setLogin("3");
-		usuarioSpringData.setSenha("3");
-		usuarioSpringData.setNome("3");
+		usuarioSpringData.setEmail("333.com");
+		usuarioSpringData.setIdade(9933);
+		usuarioSpringData.setLogin("33");
+		usuarioSpringData.setSenha("33");
+		usuarioSpringData.setNome("33");
 
 		interfaceSpringDataUSer.save(usuarioSpringData);
 
@@ -123,4 +123,8 @@ public class AppSpringDataTest {
 			System.out.println("-------------------------------------------------");
 		}
 	
+	@Test
+	public void testedeletaPorNome(){
+		interfaceSpringDataUSer.deletePorNome("33");
+	}
 }
