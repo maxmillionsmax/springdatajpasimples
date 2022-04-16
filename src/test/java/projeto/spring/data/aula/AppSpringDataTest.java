@@ -107,4 +107,20 @@ public class AppSpringDataTest {
 			System.out.println("-------------------------------------------------");
 		}
 	}
+	
+	@Test
+	public void testeConsultaNomeParam() throws Exception{
+		
+		UsuarioSpringData usuarioSpringData = interfaceSpringDataUSer.buscaPorNomeParam("Nome");
+		
+			System.out.println(usuarioSpringData.getId());
+			System.out.println(usuarioSpringData.getIdade());
+			System.out.println(usuarioSpringData.getNome());
+			System.out.println(usuarioSpringData.getEmail());
+			System.out.println(usuarioSpringData.getLogin());
+			System.out.println(usuarioSpringData.getSenha());
+
+			System.out.println("-------------------------------------------------");
+		}
+	
 }
