@@ -127,4 +127,9 @@ public class AppSpringDataTest {
 	public void testedeletaPorNome(){
 		interfaceSpringDataUSer.deletePorNome("33");
 	}
+	
+	@Test
+	public void testeupdatePorNome(){
+		interfaceSpringDataUSer.updateEmailPorNome("testeupdate@email.com", "Nome");
+	}
 }
