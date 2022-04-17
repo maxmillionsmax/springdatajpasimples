@@ -1,5 +1,6 @@
 package projeto.spring.data.aula;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,8 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 
 import projeto.spring.data.aula.dao.InterfaceSpringDataUSer;
+import projeto.spring.data.aula.dao.InterfaceTelefone;
+import projeto.spring.data.aula.model.Telefone;
 import projeto.spring.data.aula.model.UsuarioSpringData;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,15 +28,18 @@ public class AppSpringDataTest {
 	@SuppressWarnings("unused")
 	@Autowired
 	private InterfaceSpringDataUSer interfaceSpringDataUSer;
+	
+	@Autowired
+	private InterfaceTelefone interfaceTelefone;
 
 	@Test
 	public void testeInsert() {
 		UsuarioSpringData usuarioSpringData = new UsuarioSpringData();
-		usuarioSpringData.setEmail("333.com");
-		usuarioSpringData.setIdade(9933);
-		usuarioSpringData.setLogin("33");
-		usuarioSpringData.setSenha("33");
-		usuarioSpringData.setNome("33");
+		usuarioSpringData.setEmail("10011.com");
+		usuarioSpringData.setIdade(10011);
+		usuarioSpringData.setLogin("011");
+		usuarioSpringData.setSenha("101");
+		usuarioSpringData.setNome("11001");
 
 		interfaceSpringDataUSer.save(usuarioSpringData);
 
@@ -52,6 +58,16 @@ public class AppSpringDataTest {
 		System.out.println(usuarioSpringData.get().getEmail());
 		System.out.println(usuarioSpringData.get().getLogin());
 		System.out.println(usuarioSpringData.get().getSenha());
+		System.out.println("------------------------------------------");
+		
+		for (Telefone telefone : usuarioSpringData.get().getTelefones()) {
+			System.out.println(telefone.getId());
+			System.out.println(telefone.getUsuarioSpringData().getNome());
+			System.out.println(telefone.getNumero());
+			System.out.println(telefone.getTipo());
+			System.out.println("------------------------------------------");
+			
+		}
 	}
 
 	@Test
@@ -131,5 +147,18 @@ public class AppSpringDataTest {
 	@Test
 	public void testeupdatePorNome(){
 		interfaceSpringDataUSer.updateEmailPorNome("testeupdate@email.com", "Nome");
+	}
+	
+	@Test
+	public void testeInsertTelefone() {
+		
+		Optional<UsuarioSpringData> usuarioSpringData = interfaceSpringDataUSer.findById(2L);
+		
+		Telefone telefone = new Telefone();
+		telefone.setTipo("trabalho");
+		telefone.setNumero("2452345345234");
+		telefone.setUsuarioSpringData(usuarioSpringData.get());
+		
+		interfaceTelefone.save(telefone);
 	}
 }
