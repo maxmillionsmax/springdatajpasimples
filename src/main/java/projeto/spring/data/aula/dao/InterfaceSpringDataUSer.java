@@ -26,12 +26,7 @@ public interface InterfaceSpringDataUSer extends CrudRepository<UsuarioSpringDat
 	@Transactional(readOnly = true)
 	@Query(value = "select p from UsuarioSpringData p where p.nome = :paramnome")
 	public UsuarioSpringData buscaPorNomeParam (@Param("paramnome") String paramnome);
-	
-	default <S extends UsuarioSpringData> S saveAtual(S entity) {
-		// processa qualquer coisa
-		return saveAtual(entity);
-	}
-	
+			
 	@Modifying
 	@Transactional
 	@Query("delete from UsuarioSpringData u where u.nome = ?1")
